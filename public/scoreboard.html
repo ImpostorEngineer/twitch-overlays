@@ -4,58 +4,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Roboto:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Roboto:wght@400;700&family=Oswald:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Scoreboard</title>
-    <style>
-      body {
-        font-family: 'Roboto', sans-serif;
-        font-weight: 700;
-      }
-      #content {
-        display: inline;
-        text-shadow: 1px 1px #000;
-        color: #ffffff;
-      }
-      .wrapper {
-        border-radius: 20px;
-        width: 700px;
-        padding: 0 10px;
-        background-image: url('./images/scoreboardbackground.png');
-        background-color: #000;
-        margin: 0px 10px;
-        display: flex;
-        height: 90px;
-      }
-      .me,
-      .opponents {
-        width: 290px;
-        font-size: 40px;
-        margin: 5px;
-        vertical-align: top;
-      }
-      .me {
-        text-align: right;
-      }
-      .opponents {
-        text-align: left;
-      }
-      #myscore,
-      #opponentscore {
-        font-size: 60px;
-        margin: 0 10px;
-      }
-      #logo {
-        width: 100px;
-        background-image: url('./images/DerAdlerLogo.png');
-        background-repeat: no-repeat;
-        background-size: auto 100px;
-      }
-    </style>
+    <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
     <div id="content">
@@ -72,43 +28,6 @@
       </div>
     </div>
     <script src="./js/tmi.min.js"></script>
-    <script>
-      let options = {
-        options: {
-          debug: true,
-        },
-        connection: {
-          secure: true,
-          reconnect: true,
-        },
-        // identity: {
-        //   username: 'Schmoopiie',
-        //   password: 'oauth:a29b68aede41e25179a66c5978b21437',
-        // },
-        channels: ['#deradlerskartal'],
-      };
-      let client = new tmi.client(options);
-      // Connect the client to the server..
-      client.connect();
-      let myscore = 0;
-      let opponentscore = 0;
-      client.on('message', (channel, tags, message, self) => {
-        let command = message.split(' ');
-        if (command[0] == '!win' && tags.badges.moderator != null) {
-          myscore += 1;
-          document.getElementById('myscore').innerHTML = myscore;
-        }
-        if (command[0] == '!lose' && tags.badges.moderator != null) {
-          opponentscore += 1;
-          document.getElementById('opponentscore').innerHTML = opponentscore;
-        }
-        if (command[0] == '!resetscore' && tags.badges.moderator != null) {
-          myscore = 0;
-          opponentscore = 0;
-          document.getElementById('myscore').innerHTML = myscore;
-          document.getElementById('opponentscore').innerHTML = opponentscore;
-        }
-      });
-    </script>
+    <script src="./js/scoreboard.js"></script>
   </body>
 </html>
