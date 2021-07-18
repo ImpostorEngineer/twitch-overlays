@@ -43,10 +43,10 @@ body {
 }
 #logo {
   width: 120px;
-  /* background-image: url('..');
+  background-image: url('../images/JimmyLogo.png');
   background-repeat: no-repeat;
   background-size: auto 120px;
-  background-position: center 0px; */
+  background-position: center 0px;
 }
 #countdown {
   text-align: right;
