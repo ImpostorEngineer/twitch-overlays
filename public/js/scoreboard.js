@@ -6,10 +6,6 @@ let options = {
     secure: true,
     reconnect: true,
   },
-  // identity: {
-  //   username: 'Schmoopiie',
-  //   password: 'oauth:a29b68aede41e25179a66c5978b21437',
-  // },
   channels: ['#deradlerskartal'],
 };
 let client = new tmi.client(options);
