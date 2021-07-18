@@ -42,11 +42,11 @@ body {
   margin: 0 10px;
 }
 #logo {
-  width: 90px;
-  background-image: url('../images/DerAdlerLogo.png');
+  width: 120px;
+  background-image: url('../images/JimmyLogo.png');
   background-repeat: no-repeat;
-  background-size: auto 110px;
-  background-position: -5px 5px;
+  background-size: auto 120px;
+  background-position: center 0px;
 }
 #countdown {
   text-align: right;
