@@ -14,7 +14,7 @@ body {
 }
 .wrapper {
   border-radius: 20px;
-  width: 690px;
+  width: 680px;
   background: url('../images/scoreboardbackground.png');
   margin: 10px 10px;
   display: flex;
