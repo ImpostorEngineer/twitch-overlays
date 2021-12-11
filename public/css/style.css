@@ -52,8 +52,9 @@ body {
   text-align: right;
   font-size: 5em;
   font-weight: 700;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Source Code Pro', sans-serif;
   color: #ffffff;
   text-shadow: 1px 1px #000;
   font-variant-numeric: tabular-nums;
+  margin-right: 30px;
 }
