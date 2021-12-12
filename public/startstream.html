@@ -22,7 +22,7 @@
         background-size: 700px;
         filter: drop-shadow(3px 3px 10px #000);
         filter: blur(15px);
-        opacity: 0.7;
+        opacity: 1;
         animation: blink 5s infinite linear;
       }
       .content {
@@ -46,13 +46,13 @@
         }
 
         50% {
-          opacity: 0.5;
-        }
-        75% {
           opacity: 0.75;
         }
+        75% {
+          opacity: 0.25;
+        }
         100% {
-          opacity: 1;
+          opacity: 0;
         }
       }
     </style>
