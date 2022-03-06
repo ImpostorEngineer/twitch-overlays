@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: #333;
+        font-family: 'Source Code Pro Black';
+      }
+      .container {
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        height: 100vh;
+        background: url('./images/ImpostorEngineer.png') no-repeat center;
+        background-size: 700px;
+        filter: drop-shadow(3px 3px 10px #000);
+        filter: blur(15px);
+        opacity: 1;
+        animation: blink 5s infinite linear;
+        z-index: -1;
+      }
+      .content {
+        position: absolute;
+        top: 42%;
+        text-align: center;
+        width: 100%;
+        font-size: 6em;
+        text-transform: uppercase;
+        color: #fff;
+        text-shadow: 3px 3px 5px #000;
+      }
+      @keyframes blink {
+        0% {
+          opacity: 0.1;
+        }
+        25% {
+          opacity: 0.25;
+        }
+
+        50% {
+          opacity: 0.75;
+        }
+        75% {
+          opacity: 0.25;
+        }
+        100% {
+          opacity: 0.1;
+        }
+      }
+    </style>
+    <title>Stream is about to start!</title>
+  </head>
+  <body>
+    <div class="container"></div>
+    <div class="content">Be Right Back!</div>
+  </body>
+</html>
