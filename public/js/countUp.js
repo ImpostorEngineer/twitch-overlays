@@ -1,11 +1,12 @@
-let timeLeft = 10000000;
+const urlParams = new URLSearchParams(window.location.search);
+let startTime = urlParams.get('time') * 60;
 
 let counting = setInterval(function () {
-  if (timeLeft >= 0) {
-    let secs = (Math.floor(timeLeft) % 60).toString().padStart(2, '0');
-    let mins = (Math.floor(timeLeft / 60) % 60).toString().padStart(2, '0');
-    let hours = (Math.floor(timeLeft / 60 / 60) % 24).toString().padStart(2, '0');
-    let days = Math.floor((timeLeft / 60 / 60 / 24) % 24)
+  if (startTime >= 0) {
+    let secs = (Math.floor(startTime) % 60).toString().padStart(2, '0');
+    let mins = (Math.floor(startTime / 60) % 60).toString().padStart(2, '0');
+    let hours = (Math.floor(startTime / 60 / 60) % 24).toString().padStart(2, '0');
+    let days = Math.floor((startTime / 60 / 60 / 24) % 24)
       .toString()
       .padStart(2, '0');
     let daysText = `${days} days ${hours}:${mins}:${secs}`;
@@ -15,9 +16,9 @@ let counting = setInterval(function () {
 
     document.getElementById('countup').innerHTML = countDownText;
 
-    timeLeft += 1;
+    startTime += 1;
   }
-  if (timeLeft < 0) {
+  if (startTime < 0) {
     clearInterval(counting);
   }
 }, 1000);
