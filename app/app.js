@@ -4,8 +4,6 @@ require('dotenv').config();
 const { MongoClient } = require('mongodb');
 const client = new MongoClient(process.env.MONGO_URI);
 
-router.use(express.urlencoded({ extended: true }));
-
 async function findChat() {
   try {
     await client.connect();
