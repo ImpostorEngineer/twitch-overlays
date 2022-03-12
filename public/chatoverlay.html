@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <header>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Chat Box</title>
+    <style>
+      body {
+        font-family: 'Source Code Pro';
+      }
+      #content {
+        display: inline;
+      }
+      #chat {
+        display: flex;
+        flex-direction: column-reverse;
+      }
+      .wrapper {
+        width: auto;
+        display: flex;
+        padding: 5px;
+        background-color: #333;
+        margin: 5px;
+        border-radius: 10px;
+      }
+      .textWrapper {
+        width: auto;
+        flex-grow: 2;
+        font-size: 18px;
+      }
+      .userName {
+        font-weight: 700;
+        width: auto;
+        margin: 5px;
+        color: rgb(225, 0, 255);
+      }
+      .message {
+        margin: 5px;
+        color: #fff;
+        word-break: break-all;
+      }
+      .userImage {
+        align-self: center;
+        margin: 5px;
+      }
+    </style>
+    <script src="./js/tmi.min.js"></script>
+    <script src="./js/chatoverlay.js"></script>
+  </header>
+  <body>
+    <div id="content">
+      <div id="chat"></div>
+    </div>
+  </body>
+</html>

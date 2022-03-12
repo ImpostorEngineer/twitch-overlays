@@ -32,8 +32,9 @@ async function recordChat(tags, message) {
 }
 
 router.get('/', async (req, res, next) => {
-  const result = await findChat();
-  res.json(result);
+  res.json({ hello: 'world' });
+  // const result = await findChat();
+  // res.json(result);
 });
 
 router.post('/add-post', async (req, res, next) => {
