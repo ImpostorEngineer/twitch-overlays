@@ -18,6 +18,40 @@ function postChatMessage(username, message, tags) {
   return fetch('./api/add-post', postOptions);
 }
 
+async function countUserNames() {
+  const url = './api/';
+  const data = await fetch(url).then((res) => res.json());
+  let userNames = [];
+  let finalCountedNames = [];
+  for (let i = 0; i < data.length; i++) {
+    userNames.push(data[i]['username']);
+  }
+  userNames = [...new Set(userNames)];
+
+  for (let u = 0; u < userNames.length; u++) {
+    let count = 0;
+    let userCounts = {};
+    for (let i = 0; i < data.length; i++) {
+      if (userNames[u] === data[i]['username']) {
+        count += 1;
+        let username = userNames[u];
+        userCounts[username] = count;
+      }
+    }
+    finalCountedNames.push(userCounts);
+  }
+
+  for (let u = 0; u < finalCountedNames.length; u++) {
+    let username = Object.keys(finalCountedNames[u]);
+    let text = '';
+    text += '<li>' + username + ': ' + finalCountedNames[u][username] + '</li>';
+    document.getElementById('counts').innerHTML = text;
+    console.log(text);
+  }
+}
+
+countUserNames();
+
 // Connect the client to the server..
 client.on('message', async (channel, tags, message, self) => {
   if (self) return;
@@ -28,6 +62,8 @@ client.on('message', async (channel, tags, message, self) => {
   postChatMessage(username, message, tags);
 
   if (message[0] != '!') {
+    countUserNames();
+
     cleanMessage = message.replaceAll(new RegExp('<[^>]*>', 'g'), '');
 
     let chatMessage = document.createElement('div');
