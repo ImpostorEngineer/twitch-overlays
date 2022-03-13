@@ -57,10 +57,10 @@ client.on('message', async (channel, tags, message, self) => {
 
   const username = tags['display-name'];
 
-  postChatMessage(username, message, tags);
+  // postChatMessage(username, message, tags);
 
   if (message[0] != '!') {
-    countUserNames();
+    // countUserNames();
 
     cleanMessage = message.replaceAll(new RegExp('<[^>]*>', 'g'), '');
 
