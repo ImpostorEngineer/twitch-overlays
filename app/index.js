@@ -1,7 +1,6 @@
 const express = require('express');
 const api = require('./app');
 const app = express();
-const path = require('path');
 
 app.use(express.static('public'));
 app.use('/api/', api);
