@@ -27,15 +27,6 @@ client.on('message', async (channel, tags, message, self) => {
 
   postChatMessage(username, message, tags);
 
-  // const postForm =
-  //   '<form action="/add-post" method="POST"><input name="username" value="' +
-  //   username +
-  //   '" /><input name="message" value="' +
-  //   message +
-  //   '" /><input name="tags" value="' +
-  //   tags +
-  //   '" /></form>';
-
   if (message[0] != '!') {
     cleanMessage = message.replaceAll(new RegExp('<[^>]*>', 'g'), '');
 

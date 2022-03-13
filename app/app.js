@@ -11,11 +11,11 @@ async function findChat() {
     const database = client.db('twitch_chat');
     const chatLog = database.collection('twitch_chat');
     const result = await chatLog.find();
-    await result.forEach(function (err, posts) {
-      console.log('hello');
-      // const listOfPosts = JSON.parse(posts);
-      // return listOfPosts;
+    let response = [];
+    await result.forEach((res) => {
+      response.push(res);
     });
+    return response;
   } finally {
     await client.close();
   }
@@ -38,12 +38,8 @@ async function recordChat(username, message, tags) {
 }
 
 router.get('/', async (req, res, next) => {
-  // const result = await findChat();
-  // await result.forEach(function (err, result) {
-  //   res.json(result);
-  // });
-  // await result.forEach(res.json());
-  res.json({ hello: 'world' });
+  const result = await findChat();
+  res.json(result);
 });
 
 router.post('/add-post', async (req, res, next) => {
@@ -56,7 +52,6 @@ router.post('/add-post', async (req, res, next) => {
     const username = data['username'];
     const message = data['message'];
     const tags = data['tags'];
-    console.log(data);
     recordChat(username, message, tags);
     res.end('ok');
   });
