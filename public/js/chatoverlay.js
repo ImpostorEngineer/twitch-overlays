@@ -41,16 +41,14 @@ async function countUserNames() {
     finalCountedNames.push(userCounts);
   }
 
+  let text = '';
+
   for (let u = 0; u < finalCountedNames.length; u++) {
     let username = Object.keys(finalCountedNames[u]);
-    let text = '';
     text += '<li>' + username + ': ' + finalCountedNames[u][username] + '</li>';
     document.getElementById('counts').innerHTML = text;
-    console.log(text);
   }
 }
-
-countUserNames();
 
 // Connect the client to the server..
 client.on('message', async (channel, tags, message, self) => {
