@@ -71,7 +71,8 @@ client.on('message', async (channel, tags, message, self) => {
       username +
       '</div><div class="message">' +
       cleanMessage +
-      '</div></div><div class="userImage"><img src="./" width="70px"/></div></div>';
+      '</div></div></div>';
+    // <div class="userImage"><img src="./" width="70px"/></div></div>';
 
     chatMessage.innerHTML = chatContent;
 
