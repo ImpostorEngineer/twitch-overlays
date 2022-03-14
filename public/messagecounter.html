@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html>
-  <header>
+<html lang="en">
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -9,55 +9,46 @@
       href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <title>Chat Box</title>
+    <title>Message Counter</title>
     <style>
       body {
         font-family: 'Source Code Pro';
       }
       #content {
-        display: inline;
+        display: block;
       }
-      #chat {
-        display: flex;
-        flex-direction: column-reverse;
+      #counts {
+        font-weight: 500;
       }
-      .wrapper {
+      #activeUsers {
+        font-weight: 700;
+        color: #fff;
         width: auto;
-        display: flex;
-        padding: 5px;
+        padding: 10px;
+        margin: 5px;
         background-image: linear-gradient(90deg, #444, #666, #888);
         box-shadow: 5px 5px 10px #000;
-        margin: 5px;
+        text-shadow: 1px 1px 1px #000;
         border-radius: 5px;
       }
-      .textWrapper {
-        width: auto;
-        flex-grow: 2;
-        font-size: 18px;
-        padding: 5px;
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 2px;
       }
-      .userName {
-        font-weight: 700;
-        width: auto;
-        margin: 5px;
-        color: rgb(225, 0, 255);
-      }
-      .message {
-        margin: 5px;
-        color: #fff;
-        word-break: break-word;
-      }
-      .userImage {
-        align-self: center;
-        margin: 5px;
+      ul li {
+        padding: 2px;
       }
     </style>
     <script src="./js/tmi.min.js"></script>
-    <script src="./js/chatoverlay.js"></script>
-  </header>
+  </head>
   <body>
     <div id="content">
-      <div id="chat"></div>
+      <div id="activeUsers">
+        Most Active Users: <br />
+        <ul id="counts"> </ul>
+      </div>
     </div>
+    <script src="./js/messageCounter.js"></script>
   </body>
 </html>

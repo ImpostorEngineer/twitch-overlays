@@ -2,14 +2,14 @@ const express = require('express');
 const router = express.Router();
 require('dotenv').config();
 const { MongoClient } = require('mongodb');
-const client = new MongoClient(process.env.MONGO_URI);
 
 async function findChat() {
+  const client = new MongoClient(process.env.MONGO_URI);
   try {
     await client.connect();
     const database = client.db('twitch_chat');
     const chatLog = database.collection('twitch_chat');
-    const result = await chatLog.find();
+    const result = chatLog.find();
     let response = [];
     await result.forEach((res) => {
       response.push(res);
@@ -21,6 +21,7 @@ async function findChat() {
 }
 
 async function recordChat(username, message, tags) {
+  const client = new MongoClient(process.env.MONGO_URI);
   try {
     await client.connect();
     const database = client.db('twitch_chat');
@@ -37,7 +38,7 @@ async function recordChat(username, message, tags) {
 }
 
 router.get('/', async (req, res, next) => {
-  const result = await findChat();
+  const result = await findChat().catch(console.dir);
   res.json(result);
 });
 
@@ -51,7 +52,7 @@ router.post('/add-post', async (req, res, next) => {
     const username = data['username'];
     const message = data['message'];
     const tags = data['tags'];
-    recordChat(username, message, tags);
+    recordChat(username, message, tags).catch(console.dir);
     res.end('ok');
   });
   next();
