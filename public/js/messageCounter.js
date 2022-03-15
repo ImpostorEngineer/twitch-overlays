@@ -40,7 +40,7 @@ async function countUserNames() {
   for (let u = 0; u < finalCountedNames.length; u++) {
     const username = finalCountedNames[u]['username'];
     const count = finalCountedNames[u]['count'];
-    if (count > 10) {
+    if (u < 5) {
       text += '<li>' + username + ': ' + count + '</li>';
     }
     document.getElementById('counts').innerHTML = text;
