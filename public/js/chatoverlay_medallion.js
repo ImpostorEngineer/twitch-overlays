@@ -4,7 +4,7 @@ const client = new tmi.Client({
     reconnect: true,
     secure: true,
   },
-  channels: ['impostorengineer'],
+  channels: ['medallionstallion_'],
 });
 
 client.connect().catch(console.error);
@@ -26,7 +26,7 @@ client.on('message', async (channel, tags, message, self) => {
 
   const username = tags['display-name'];
 
-  postChatMessage(username, message, tags, 'self');
+  postChatMessage(username, message, tags, 'medallion');
 
   if (message[0] != '!') {
     cleanMessage = message.replaceAll(new RegExp('<[^>]*>', 'g'), '');

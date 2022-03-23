@@ -20,12 +20,12 @@ async function findChat() {
   }
 }
 
-async function recordChat(username, message, tags) {
+async function recordChat(username, message, tags, collection) {
   const client = new MongoClient(process.env.MONGO_URI);
   try {
     await client.connect();
     const database = client.db('twitch_chat');
-    const chatLog = database.collection('twitch_chat');
+    const chatLog = database.collection(collection);
     const doc = {
       username,
       message,
@@ -42,7 +42,7 @@ router.get('/', async (req, res, next) => {
   res.json(result);
 });
 
-router.post('/add-post', async (req, res, next) => {
+router.post('/add-post/self', async (req, res, next) => {
   let body = '';
   req.on('data', (chunk) => {
     body += chunk.toString();
@@ -52,7 +52,23 @@ router.post('/add-post', async (req, res, next) => {
     const username = data['username'];
     const message = data['message'];
     const tags = data['tags'];
-    recordChat(username, message, tags).catch(console.dir);
+    recordChat(username, message, tags, 'twitch_chat').catch(console.dir);
+    res.end('ok');
+  });
+  next();
+});
+
+router.post('/add-post/medallion', async (req, res, next) => {
+  let body = '';
+  req.on('data', (chunk) => {
+    body += chunk.toString();
+  });
+  req.on('end', () => {
+    const data = JSON.parse(body);
+    const username = data['username'];
+    const message = data['message'];
+    const tags = data['tags'];
+    recordChat(username, message, tags, 'twitch_chat_medallion').catch(console.dir);
     res.end('ok');
   });
   next();
