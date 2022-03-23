@@ -8,7 +8,7 @@ async function findChat(collection) {
   try {
     await client.connect();
     const database = client.db('twitch_chat');
-    const chatLog = database.collection();
+    const chatLog = database.collection(collection);
     const result = chatLog.find();
     let response = [];
     await result.forEach((res) => {
