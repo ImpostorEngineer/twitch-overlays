@@ -14,37 +14,49 @@ body {
 }
 .wrapper {
   border-radius: 20px;
-  width: 680px;
+  width: 600px;
   background: url('../images/scoreboardbackground.png');
   margin: 10px 10px;
-  display: flex;
   height: 100px;
   box-shadow: 0px 4px 10px #ffffff;
+  display: flex;
   justify-content: center;
+  align-items: center;
 }
 .me,
 .opponents {
   font-size: 44px;
-  margin: 5px;
-  margin-top: 10px;
+  margin: 10px;
+  margin-top: 25px;
+  width: 180px;
 }
 .me {
   text-align: right;
-  width: 250px;
 }
 .opponents {
-  width: 310px;
   text-align: left;
 }
 #myscore,
-#opponentscore {
+#opponentscore,
+#dash {
   font-size: 64px;
-  margin: 0 10px;
+  margin: 5px;
 }
 #logo {
-  width: 90px;
-  background-image: url('../images/DerAdlerLogo.png');
+  margin-left:5px;
+  height: 90px;
+  width: 45px;
+  background-image: url('../images/ImpostorEngineer.png');
   background-repeat: no-repeat;
-  background-size: auto 110px;
-  background-position: -5px 5px;
+  background-size: auto 80px;
+  background-position: 0px 10px;
+}
+#pros{
+  margin-right: 5px;
+  height: 90px;
+  width: 45px;
+  background-image: url('../images/pros.png');
+  background-repeat: no-repeat;
+  background-size: auto 80px;
+  background-position: 0px 10px;
 }
