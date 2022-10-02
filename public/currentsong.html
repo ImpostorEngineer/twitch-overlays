@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Current Song</title>
+    <style>
+      * {
+        font-family: 'Exocet';
+        font-weight: 800;
+        font-size: 42px;
+        color: #fff;
+        -webkit-text-stroke-width: 3px;
+        -webkit-text-stroke-color: black;
+        margin: 0;
+        padding: 0;
+      }
+      #content {
+        width: 1000px;
+      }
+      #current-song {
+        width: 1000px;
+        height: 100px;
+        margin: 0;
+        line-height: 50px;
+        text-align: left;
+        animation: scroll-left 20s linear infinite;
+      }
+      @keyframes scroll-left {
+        0% {
+          transform: translateX(100%);
+        }
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+    </style>
+    <script>
+      function getData() {
+        fetch('http://localhost:1608/')
+          .then((res) => res.json())
+          .then((res) => {
+            let innerHTML = `${res['artists']} - ${res['title']}`;
+            document.getElementById('current-song').innerHTML = innerHTML;
+          });
+      }
+    </script>
+    <meta http-equiv="refresh" content="30" />
+  </head>
+  <body>
+    <div id="content">
+      <div id="current-song"></div>
+    </div>
+    <script>
+      getData();
+    </script>
+  </body>
+</html>
