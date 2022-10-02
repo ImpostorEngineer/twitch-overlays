@@ -46,7 +46,7 @@
       async function innerHTML() {
         const res = await getData();
         if (res['status'] == 'playing') {
-          let innerHTML = `${res['artists']} - ${res['title']}`;
+          let innerHTML = `${res['artists'][0]} - ${res['title']}`;
           document.getElementById('current-song').innerHTML = innerHTML;
         }
       }
