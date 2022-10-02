@@ -42,7 +42,6 @@ async function chatClient() {
   client.connect();
 
   client.on('message', async (channel, badges, message, self, tags) => {
-    console.log(badges);
     if (
       message.toLowerCase() === '!sarki' ||
       message.toLowerCase() === '!song' ||
