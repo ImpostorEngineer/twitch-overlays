@@ -43,7 +43,11 @@ async function chatClient() {
 
   client.on('message', async (channel, badges, message, self, tags) => {
     console.log(badges);
-    if (message.toLowerCase() === '!sarki') {
+    if (
+      message.toLowerCase() === '!sarki' ||
+      message.toLowerCase() === '!song' ||
+      message.toLowerCase() === '!currentsong'
+    ) {
       const songInfo = await getSongName();
       client.say(channel, songInfo);
     }
