@@ -12,7 +12,10 @@ async function innerHTML() {
 
 async function chatClient() {
   const currentSong = await getData();
-  const songInfo = `${currentSong['artists'][0].toUpperCase()} - ${currentSong['title'].toUpperCase()}`;
+  let songInfo = 'Henuz birsey calmiyor';
+  if (currentSong['status'] == 'playing') {
+    songInfo = `${currentSong['artists'][0].toUpperCase()} - ${currentSong['title'].toUpperCase()}`;
+  }
   const access_token = process.env.TWITCH_ACCESS_TOKEN;
   const password = 'oauth:' + access_token;
   console.log(password);
