@@ -39,18 +39,8 @@
         }
       }
     </style>
-    <script>
-      function getData() {
-        return fetch('http://localhost:1608/').then((res) => res.json());
-      }
-      async function innerHTML() {
-        const res = await getData();
-        if (res['status'] == 'playing') {
-          let innerHTML = `${res['artists'][0].toUpperCase()} - ${res['title'].toUpperCase()}`;
-          document.getElementById('current-song').innerHTML = innerHTML;
-        }
-      }
-    </script>
+    <script src="./js/tmi.min.js"></script>
+    <script src="./js/currentsong.js"></script>
   </head>
   <body>
     <div id="content">
