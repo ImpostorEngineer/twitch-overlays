@@ -1,3 +1,8 @@
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const access_token = urlParams.get('token');
+const channel = urlParams.get('channel');
+
 function getData() {
   return fetch('http://localhost:1608/').then((res) => res.json());
 }
@@ -10,15 +15,17 @@ async function innerHTML() {
   }
 }
 
-async function chatClient() {
+async function getSongName() {
   const currentSong = await getData();
   let songInfo = 'Henuz birsey calmiyor';
   if (currentSong['status'] == 'playing') {
-    songInfo = `${currentSong['artists'][0].toUpperCase()} - ${currentSong['title'].toUpperCase()}`;
+    songInfo = `${currentSong['artists'][0]} - ${currentSong['title']}`;
   }
-  const access_token = process.env.TWITCH_ACCESS_TOKEN;
+  return songInfo;
+}
+
+async function chatClient() {
   const password = 'oauth:' + access_token;
-  console.log(password);
   const client = new tmi.Client({
     options: { debug: true },
     connection: {
@@ -29,16 +36,15 @@ async function chatClient() {
       username: 'ImpostorEngBot',
       password: password,
     },
-    channels: ['deradlerskartal'],
+    channels: [channel],
   });
 
   client.connect();
 
-  client.on('message', (channel, badges, message, self, tags) => {
-    // Ignore echoed messages.
-    console.log(message);
+  client.on('message', async (channel, badges, message, self, tags) => {
+    console.log(badges);
     if (message.toLowerCase() === '!sarki') {
-      // "@alca, heya!"
+      const songInfo = await getSongName();
       client.say(channel, songInfo);
     }
   });
