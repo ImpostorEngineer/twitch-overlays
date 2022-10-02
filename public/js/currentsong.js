@@ -37,7 +37,7 @@ async function chatClient() {
   client.on('message', (channel, badges, message, self, tags) => {
     // Ignore echoed messages.
     console.log(message);
-    if (message.toLowerCase() === '!song') {
+    if (message.toLowerCase() === '!sarki') {
       // "@alca, heya!"
       client.say(channel, songInfo);
     }
