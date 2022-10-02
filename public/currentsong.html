@@ -41,22 +41,24 @@
     </style>
     <script>
       function getData() {
-        fetch('http://localhost:1608/')
-          .then((res) => res.json())
-          .then((res) => {
-            let innerHTML = `${res['artists']} - ${res['title']}`;
-            document.getElementById('current-song').innerHTML = innerHTML;
-          });
+        return fetch('http://localhost:1608/').then((res) => res.json());
+      }
+      async function innerHTML() {
+        const res = await getData();
+        if (res['status'] == 'playing') {
+          let innerHTML = `${res['artists']} - ${res['title']}`;
+          document.getElementById('current-song').innerHTML = innerHTML;
+        }
+        console.log('hello');
       }
     </script>
-    <meta http-equiv="refresh" content="30" />
   </head>
   <body>
     <div id="content">
       <div id="current-song"></div>
     </div>
     <script>
-      getData();
+      setInterval(innerHTML, 2000);
     </script>
   </body>
 </html>
