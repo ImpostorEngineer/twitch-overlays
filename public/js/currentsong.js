@@ -35,7 +35,6 @@ function readIt(it) {
   speech.volume = 0.7;
   let voice = window.speechSynthesis.getVoices();
   speech.voice = voice[2];
-  console.log(voice[2]);
   window.speechSynthesis.speak(speech);
 }
 
@@ -69,15 +68,25 @@ async function chatClient() {
       ((message.toLowerCase() === '!house' || message.toLowerCase() === '!housed') && badges['badges']['moderator']) ||
       badges['badges']['broadcaster']
     ) {
-      // const house = document.getElementById('house');
       readIt('house');
     }
     if (
       ((message.toLowerCase() === '!bs' || message.toLowerCase() === '!bs') && badges['badges']['moderator']) ||
       badges['badges']['broadcaster']
     ) {
-      // const house = document.getElementById('house');
       readIt('black smith');
+    }
+    if (
+      ((message.toLowerCase() === '!up' || message.toLowerCase() === '!up') && badges['badges']['moderator']) ||
+      badges['badges']['broadcaster']
+    ) {
+      readIt('go up');
+    }
+    if (
+      ((message.toLowerCase() === '!vill' || message.toLowerCase() === '!vill') && badges['badges']['moderator']) ||
+      badges['badges']['broadcaster']
+    ) {
+      readIt('Villager Que');
     }
   });
 }
