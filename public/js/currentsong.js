@@ -82,6 +82,9 @@ async function chatClient() {
     if (message.toLowerCase() == '!ekran' && userLevel) {
       readIt('ekran');
     }
+    if (message.toLowerCase() == '!market' && userLevel) {
+      readIt('market');
+    }
   });
 }
 
