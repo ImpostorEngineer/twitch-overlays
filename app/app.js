@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const axios = require('axios');
 require('dotenv').config();
 const { MongoClient } = require('mongodb');
 
@@ -37,10 +38,39 @@ async function recordChat(username, message, tags, collection) {
   }
 }
 
+// async function findSong(song) {
+//   const encoded = encodeURI(song);
+//   const spotifyURL = 'https://api.spotify.com/v1/search';
+//   const config = {
+//     headers: {
+//       Accept: 'application/json',
+//       'Content-Type': 'application/json',
+//       Authorization: `Bearer ${process.env.SPOTIFY_OATH}`,
+//     },
+//   };
+
+//   const data = await axios.get(spotifyURL, config, {
+//     data: {
+//       type: 'track',
+//       limit: 1,
+//       q: encoded,
+//     },
+//   });
+//   console.log(spotifyURL);
+//   return data;
+// }
+
 router.get('/', async (req, res, next) => {
   const result = await findChat('twitch_chat').catch(console.dir);
   res.json(result);
 });
+
+// router.get('/song/:song', async (req, res, next) => {
+//   const song = req.params.song;
+//   const result = await findSong(song);
+//   // .catch(console.dir);
+//   res.json(result);
+// });
 
 router.get('/medallion', async (req, res, next) => {
   const result = await findChat('twitch_chat_medallion').catch(console.dir);

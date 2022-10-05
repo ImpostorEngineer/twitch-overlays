@@ -54,6 +54,11 @@ async function chatClient() {
       const songInfo = await getSongName();
       client.say(channel, songInfo);
     }
+    if ((message.toLowerCase() === '!house' || message.toLowerCase() === '!housed') && badges['badges']['moderator']) {
+      const house = document.getElementById('house');
+      console.log(badges);
+      house.play();
+    }
   });
 }
 
