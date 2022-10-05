@@ -30,11 +30,11 @@ async function getSongName() {
 
 function readIt(it) {
   let speech = new SpeechSynthesisUtterance();
+  let voice = window.speechSynthesis.getVoices();
+  speech.voice = voice[2];
   speech.lang = 'en';
   speech.text = it;
   speech.volume = 0.7;
-  let voice = window.speechSynthesis.getVoices();
-  speech.voice = voice[2];
   window.speechSynthesis.speak(speech);
 }
 
@@ -56,6 +56,9 @@ async function chatClient() {
   client.connect();
 
   client.on('message', async (channel, badges, message, self, tags) => {
+    const userLevel =
+      badges['badges']['moderator'] || badges['badges']['broadcaster'] || badges['user-id'] == '489870215';
+
     if (
       message.toLowerCase() === '!sarki' ||
       message.toLowerCase() === '!song' ||
@@ -64,29 +67,20 @@ async function chatClient() {
       const songInfo = await getSongName();
       client.say(channel, songInfo);
     }
-    if (
-      ((message.toLowerCase() === '!house' || message.toLowerCase() === '!housed') && badges['badges']['moderator']) ||
-      badges['badges']['broadcaster']
-    ) {
+    if ((message.toLowerCase() === '!house' || message.toLowerCase() === '!housed') && userLevel) {
       readIt('house');
     }
-    if (
-      ((message.toLowerCase() === '!bs' || message.toLowerCase() === '!bs') && badges['badges']['moderator']) ||
-      badges['badges']['broadcaster']
-    ) {
+    if (message.toLowerCase() === '!bs' && userLevel) {
       readIt('black smith');
     }
-    if (
-      ((message.toLowerCase() === '!up' || message.toLowerCase() === '!up') && badges['badges']['moderator']) ||
-      badges['badges']['broadcaster']
-    ) {
+    if ((message.toLowerCase() === '!up' || message.toLowerCase() === '!up') && userLevel) {
       readIt('age up');
     }
-    if (
-      ((message.toLowerCase() === '!vill' || message.toLowerCase() === '!vill') && badges['badges']['moderator']) ||
-      badges['badges']['broadcaster']
-    ) {
+    if ((message.toLowerCase() === '!vill' || message.toLowerCase() === '!vil') && userLevel) {
       readIt('villager');
+    }
+    if (message.toLowerCase() == '!ekran' && userLevel) {
+      readIt('ekran');
     }
   });
 }
