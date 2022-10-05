@@ -28,6 +28,17 @@ async function getSongName() {
   return songInfo;
 }
 
+function readIt(it) {
+  let speech = new SpeechSynthesisUtterance();
+  speech.lang = 'en';
+  speech.text = it;
+  speech.volume = 0.7;
+  let voice = window.speechSynthesis.getVoices();
+  speech.voice = voice[2];
+  console.log(voice[2]);
+  window.speechSynthesis.speak(speech);
+}
+
 async function chatClient() {
   const password = 'oauth:' + access_token;
   const client = new tmi.Client({
@@ -54,10 +65,19 @@ async function chatClient() {
       const songInfo = await getSongName();
       client.say(channel, songInfo);
     }
-    if ((message.toLowerCase() === '!house' || message.toLowerCase() === '!housed') && badges['badges']['moderator']) {
-      const house = document.getElementById('house');
-      console.log(badges);
-      house.play();
+    if (
+      ((message.toLowerCase() === '!house' || message.toLowerCase() === '!housed') && badges['badges']['moderator']) ||
+      badges['badges']['broadcaster']
+    ) {
+      // const house = document.getElementById('house');
+      readIt('house');
+    }
+    if (
+      ((message.toLowerCase() === '!bs' || message.toLowerCase() === '!bs') && badges['badges']['moderator']) ||
+      badges['badges']['broadcaster']
+    ) {
+      // const house = document.getElementById('house');
+      readIt('black smith');
     }
   });
 }
