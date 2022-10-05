@@ -80,13 +80,13 @@ async function chatClient() {
       ((message.toLowerCase() === '!up' || message.toLowerCase() === '!up') && badges['badges']['moderator']) ||
       badges['badges']['broadcaster']
     ) {
-      readIt('go up');
+      readIt('age up');
     }
     if (
       ((message.toLowerCase() === '!vill' || message.toLowerCase() === '!vill') && badges['badges']['moderator']) ||
       badges['badges']['broadcaster']
     ) {
-      readIt('Villager Que');
+      readIt('villager');
     }
   });
 }
