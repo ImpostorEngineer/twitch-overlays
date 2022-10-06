@@ -29,9 +29,9 @@ async function getSongName() {
 }
 
 function readIt(it) {
-  let speech = new SpeechSynthesisUtterance();
   let voice = window.speechSynthesis.getVoices();
-  speech.voice = voice[2];
+  let speech = new SpeechSynthesisUtterance();
+  speech.voice = voice[5];
   speech.lang = 'en';
   speech.text = it;
   speech.volume = 0.7;
@@ -84,6 +84,15 @@ async function chatClient() {
     }
     if (message.toLowerCase() == '!market' && userLevel) {
       readIt('market');
+    }
+    if (
+      (message.toLowerCase().split(' ')[0] == '!read' || message.toLowerCase().split(' ')[0] == '!oku') &&
+      userLevel
+    ) {
+      const m = message.toLowerCase().split(' ');
+      const remove = m.shift();
+      const text = m.join(' ');
+      readIt(text);
     }
   });
 }

@@ -3,6 +3,7 @@ const router = express.Router();
 const axios = require('axios');
 require('dotenv').config();
 const { MongoClient } = require('mongodb');
+const querystring = require('node:querystring');
 
 async function findChat(collection) {
   const client = new MongoClient(process.env.MONGO_URI);
@@ -60,10 +61,51 @@ async function recordChat(username, message, tags, collection) {
 //   return data;
 // }
 
-router.get('/', async (req, res, next) => {
-  const result = await findChat('twitch_chat').catch(console.dir);
-  res.json(result);
-});
+// router.get('/login', function (req, res) {
+//   // const state = generateRandomString(16);
+//   const scope = 'user-read-private user-read-email user-read-currently-playing';
+//   const redirect_uri = 'http://localhost:5000/api/callback/';
+//   const client_id = process.env.SPOTIFY_CLIENT_ID;
+//   console.log('hello login');
+
+//   res.redirect(
+//     'https://accounts.spotify.com/authorize?' +
+//       querystring.stringify({
+//         response_type: 'code',
+//         client_id: client_id,
+//         scope: scope,
+//         redirect_uri: redirect_uri,
+//         // state: state,
+//       })
+//   );
+// });
+
+// router.get('/callback', function (req, res) {
+//   var code = req.query.code || null;
+//   var state = req.query.state || null;
+//   const redirect_uri = 'http://localhost:5000/api/callback/';
+//   const client_id = process.env.SPOTIFY_CLIENT_ID;
+//   const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
+//   console.log('hello callback', code);
+
+//   const authOptions = {
+//     url: 'https://accounts.spotify.com/api/token',
+//     form: {
+//       code: code,
+//       redirect_uri: redirect_uri,
+//       grant_type: 'authorization_code',
+//     },
+//     headers: {
+//       Authorization: 'Basic ' + new Buffer.from(client_id + ':' + client_secret).toString('base64'),
+//     },
+//     json: true,
+//   };
+
+//   const auth = axios
+//     .get(authOptions['url'], authOptions)
+//     .then((res) => res.json())
+//     .then((res) => console.log(res));
+// });
 
 // router.get('/song/:song', async (req, res, next) => {
 //   const song = req.params.song;
@@ -71,6 +113,11 @@ router.get('/', async (req, res, next) => {
 //   // .catch(console.dir);
 //   res.json(result);
 // });
+
+router.get('/', async (req, res, next) => {
+  const result = await findChat('twitch_chat').catch(console.dir);
+  res.json(result);
+});
 
 router.get('/medallion', async (req, res, next) => {
   const result = await findChat('twitch_chat_medallion').catch(console.dir);
