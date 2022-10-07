@@ -94,7 +94,7 @@ async function chatClient() {
       const text = m.join(' ');
       readIt(text);
       let voice = window.speechSynthesis.getVoices();
-      client.say(channel, voice[2].voiceURI, voice[3].voiceURI, voice[4].voiceURI, voice[5].voiceURI);
+      client.say(channel, voice[2], voice[3], voice[4], voice[5]);
     }
   });
 }
