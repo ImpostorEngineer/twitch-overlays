@@ -31,7 +31,7 @@ async function getSongName() {
 function readIt(it) {
   let voice = window.speechSynthesis.getVoices();
   let speech = new SpeechSynthesisUtterance();
-  speech.voice = voice[5];
+  speech.voice = voice[2];
   speech.lang = 'en';
   speech.text = it;
   speech.volume = 0.7;
