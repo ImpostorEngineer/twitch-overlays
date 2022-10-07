@@ -93,6 +93,8 @@ async function chatClient() {
       const remove = m.shift();
       const text = m.join(' ');
       readIt(text);
+      let voice = window.speechSynthesis.getVoices();
+      client.say(voice[2].voiceURI, voice[3].voiceURI, voice[4].voiceURI, voice[5].voiceURI);
     }
   });
 }
