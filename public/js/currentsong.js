@@ -59,42 +59,41 @@ async function chatClient() {
     const userLevel =
       badges['badges']['moderator'] || badges['badges']['broadcaster'] || badges['user-id'] == '489870215';
 
-    if (
-      message.toLowerCase() === '!sarki' ||
-      message.toLowerCase() === '!song' ||
-      message.toLowerCase() === '!currentsong'
-    ) {
+    const fullMessage = message.toLowerCase().split(' ');
+    const command = fullMessage[0];
+    const remove = fullMessage.shift();
+    const text = fullMessage.join(' ');
+
+    if (command === '!sarki' || command === '!song' || command === '!currentsong') {
       const songInfo = await getSongName();
       client.say(channel, songInfo);
     }
-    if ((message.toLowerCase() === '!house' || message.toLowerCase() === '!housed') && userLevel) {
+    if ((command === '!house' || command === '!housed') && userLevel) {
       readIt('house');
     }
-    if (message.toLowerCase() === '!bs' && userLevel) {
+    if (command === '!bs' && userLevel) {
       readIt('black smith');
     }
-    if ((message.toLowerCase() === '!up' || message.toLowerCase() === '!up') && userLevel) {
+    if ((command === '!up' || command === '!up') && userLevel) {
       readIt('age up');
     }
-    if ((message.toLowerCase() === '!vill' || message.toLowerCase() === '!vil') && userLevel) {
+    if ((command === '!vill' || command === '!vil') && userLevel) {
       readIt('villager');
     }
-    if (message.toLowerCase() == '!ekran' && userLevel) {
+    if (command == '!ekran' && userLevel) {
       readIt('ekran');
     }
-    if (message.toLowerCase() == '!market' && userLevel) {
+    if (command == '!market' && userLevel) {
       readIt('market');
     }
-    if (
-      (message.toLowerCase().split(' ')[0] == '!read' || message.toLowerCase().split(' ')[0] == '!oku') &&
-      userLevel
-    ) {
-      const m = message.toLowerCase().split(' ');
-      const remove = m.shift();
-      const text = m.join(' ');
+    if ((command == '!read' || command == '!oku') && userLevel) {
       readIt(text);
-      let voice = window.speechSynthesis.getVoices();
-      client.say(channel, voice[2], voice[3], voice[4], voice[5]);
+    }
+    if ((command == '!test' || command == '!test') && userLevel) {
+      // let voice1 = window.speechSynthesis.getVoices();
+      // let v = voice1[2];
+      // console.log(voice1);
+      // client.say(channel, 'v');
     }
   });
 }
