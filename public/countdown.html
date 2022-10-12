@@ -21,6 +21,17 @@
         font-variant-numeric: tabular-nums;
         margin-right: 30px;
       }
+      .red {
+        color: #900 !important;
+      }
+      .blink {
+        animation: blink-animation 1s steps(5, start) infinite;
+      }
+      @keyframes blink-animation {
+        to {
+          visibility: hidden;
+        }
+      }
     </style>
   </head>
   <body>

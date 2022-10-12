@@ -96,6 +96,12 @@ async function chatClient() {
       // client.say(channel, 'v');
     }
   });
+  // client.on('cheer', (channel, userstate, message) => {
+  //   const text = `${userstate['display-name']} sent ${userstate.bits} ${message}`;
+  //   // console.log(userstate);
+  //   // console.log(text);
+  //   readIt(text);
+  // });
 }
 
 chatClient();
