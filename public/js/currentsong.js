@@ -13,7 +13,7 @@ async function innerHTML() {
     let innerHTML = `${res['artists'][0].toUpperCase()} - ${res['title'].toUpperCase()}`;
     let size = innerHTML.length;
     let width = size * 60;
-    console.log(width);
+
     document.getElementById('song-wrapper').style.width = width + 'px';
     document.getElementById('current-song').innerHTML = innerHTML;
   }
@@ -91,17 +91,12 @@ async function chatClient() {
     }
     if ((command == '!test' || command == '!test') && userLevel) {
       // let voice1 = window.speechSynthesis.getVoices();
-      // let v = voice1[2];
-      // console.log(voice1);
-      // client.say(channel, 'v');
+      // const now = new Date();
+      // const date = `It is ${now.toTimeString()} - ${now.toDateString()}`;
+      // console.log(date);
+      // client.say(channel, date);
     }
   });
-  // client.on('cheer', (channel, userstate, message) => {
-  //   const text = `${userstate['display-name']} sent ${userstate.bits} ${message}`;
-  //   // console.log(userstate);
-  //   // console.log(text);
-  //   readIt(text);
-  // });
 }
 
 chatClient();
