@@ -90,11 +90,14 @@ async function chatClient() {
       readIt(text);
     }
     if ((command == '!test' || command == '!test') && userLevel) {
-      // let voice1 = window.speechSynthesis.getVoices();
+      let voice1 = window.speechSynthesis.getVoices();
+      let voice2 = voice1[2];
+      let vname = `This is it: ${voice1}`;
+
       // const now = new Date();
       // const date = `It is ${now.toTimeString()} - ${now.toDateString()}`;
-      // console.log(date);
-      // client.say(channel, date);
+      console.log(vname);
+      client.say(channel, 'vname');
     }
   });
 }
