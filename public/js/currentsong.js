@@ -56,8 +56,12 @@ async function chatClient() {
   client.connect();
 
   client.on('message', async (channel, badges, message, self, tags) => {
-    const userLevel =
-      badges['badges']['moderator'] || badges['badges']['broadcaster'] || badges['user-id'] == '489870215';
+    let userLevel = false;
+    if (badges['badges'] !== null) {
+      userLevel = badges['badges']['moderator'] == 1 || badges['badges']['broadcaster'] == 1;
+    } else {
+      userLevel = badges['user-id'] == '489870215';
+    }
 
     const fullMessage = message.toLowerCase().split(' ');
     const command = fullMessage[0];
@@ -89,7 +93,8 @@ async function chatClient() {
     if ((command == '!read' || command == '!oku') && userLevel) {
       readIt(text);
     }
-    if ((command == '!test' || command == '!test') && userLevel) {
+    if (command == '!test' && userLevel) {
+      readIt(text);
       // let voice1 = window.speechSynthesis.getVoices();
       // let voice2 = voice1[2];
       // let vname = `This is it: ${voice1}`;
