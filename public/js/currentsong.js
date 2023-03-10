@@ -3,6 +3,25 @@ const urlParams = new URLSearchParams(queryString);
 const access_token = urlParams.get('token');
 const channel = urlParams.get('channel');
 
+const damage = new Audio('../audio/assets_audio_clips_emotional_damage.mp3');
+damage.volume = 0.03;
+const applause = new Audio('../audio/assets_audio_clips_applause.mp3');
+applause.volume = 0.03;
+const drum = new Audio('../audio/assets_audio_clips_drumroll.mp3');
+drum.volume = 0.03;
+const hail = new Audio('../audio/assets_audio_clips_hailed.mp3');
+hail.volume = 0.03;
+const gotTime = new Audio('../audio/assets_audio_clips_nobody.mp3');
+gotTime.volume = 0.03;
+const rimshot = new Audio('../audio/assets_audio_clips_rimshot.mp3');
+rimshot.volume = 0.03;
+const sadTrombone = new Audio('../audio/assets_audio_clips_sadtrombone.mp3');
+sadTrombone.volume = 0.03;
+const shame = new Audio('../audio/assets_audio_clips_shame.mp3');
+shame.volume = 0.03;
+const wrong = new Audio('../audio/assets_audio_clips_wrong.mp3');
+wrong.volume = 0.03;
+
 function getData() {
   return fetch('http://localhost:1608/').then((res) => res.json());
 }
@@ -94,31 +113,31 @@ async function chatClient() {
       readIt(text);
     }
     if (command == '!damage' && userLevel) {
-      new Audio('../audio/assets_audio_clips_emotional_damage.mp3').play();
+      damage.play();
     }
     if ((command == '!alkis' || command == '!clap') && userLevel) {
-      new Audio('../audio/assets_audio_clips_applause.mp3').play();
+      applause.play();
     }
     if (command == '!drum' && userLevel) {
-      new Audio('../audio/assets_audio_clips_drumroll.mp3').play();
+      drum.play();
     }
     if (command == '!hail' && userLevel) {
-      new Audio('../audio/assets_audio_clips_hailed.mp3').play();
+      hail.play();
     }
     if (command == '!time' && userLevel) {
-      new Audio('../audio/assets_audio_clips_nobody.mp3').play();
+      gotTime.play();
     }
     if (command == '!tis' && userLevel) {
-      new Audio('../audio/assets_audio_clips_rimshot.mp3').play();
+      rimshot.play();
     }
     if (command == '!sad' && userLevel) {
-      new Audio('../audio/assets_audio_clips_sadtrombone.mp3').play();
+      sadTrombone.play();
     }
     if (command == '!shame' && userLevel) {
-      new Audio('../audio/assets_audio_clips_shame.mp3').play();
+      shame.play();
     }
     if (command == '!wrong' && userLevel) {
-      new Audio('../audio/assets_audio_clips_wrong.mp3').play();
+      wrong.play();
     }
     if (command == '!test' && userLevel) {
       readIt(text);
