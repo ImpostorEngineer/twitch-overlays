@@ -112,33 +112,33 @@ async function chatClient() {
     if ((command == '!read' || command == '!oku') && userLevel) {
       readIt(text);
     }
-    if (command == '!damage' && userLevel) {
-      damage.play();
-    }
-    if ((command == '!alkis' || command == '!clap') && userLevel) {
-      applause.play();
-    }
-    if (command == '!drum' && userLevel) {
-      drum.play();
-    }
-    if (command == '!hail' && userLevel) {
-      hail.play();
-    }
-    if (command == '!time' && userLevel) {
-      gotTime.play();
-    }
-    if (command == '!tis' && userLevel) {
-      rimshot.play();
-    }
-    if (command == '!sad' && userLevel) {
-      sadTrombone.play();
-    }
-    if (command == '!shame' && userLevel) {
-      shame.play();
-    }
-    if (command == '!wrong' && userLevel) {
-      wrong.play();
-    }
+    // if (command == '!damage' && userLevel) {
+    //   damage.play();
+    // }
+    // if ((command == '!alkis' || command == '!clap') && userLevel) {
+    //   applause.play();
+    // }
+    // if (command == '!drum' && userLevel) {
+    //   drum.play();
+    // }
+    // if (command == '!hail' && userLevel) {
+    //   hail.play();
+    // }
+    // if (command == '!time' && userLevel) {
+    //   gotTime.play();
+    // }
+    // if (command == '!tis' && userLevel) {
+    //   rimshot.play();
+    // }
+    // if (command == '!sad' && userLevel) {
+    //   sadTrombone.play();
+    // }
+    // if (command == '!shame' && userLevel) {
+    //   shame.play();
+    // }
+    // if (command == '!wrong' && userLevel) {
+    //   wrong.play();
+    // }
     if (command == '!test' && userLevel) {
       readIt(text);
 
