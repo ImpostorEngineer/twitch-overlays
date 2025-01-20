@@ -66,7 +66,7 @@ async function chatClient() {
       reconnect: true,
       secure: true,
     },
-    channels: ['impostorengineer'],
+    channels: [channel],
   });
 
   client.connect();
