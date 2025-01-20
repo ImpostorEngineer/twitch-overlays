@@ -1,26 +1,6 @@
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-const access_token = urlParams.get('token');
-const channel = urlParams.get('channel');
-
-const damage = new Audio('../audio/assets_audio_clips_emotional_damage.mp3');
-damage.volume = 0.03;
-const applause = new Audio('../audio/assets_audio_clips_applause.mp3');
-applause.volume = 0.03;
-const drum = new Audio('../audio/assets_audio_clips_drumroll.mp3');
-drum.volume = 0.03;
-const hail = new Audio('../audio/assets_audio_clips_hailed.mp3');
-hail.volume = 0.03;
-const gotTime = new Audio('../audio/assets_audio_clips_nobody.mp3');
-gotTime.volume = 0.03;
-const rimshot = new Audio('../audio/assets_audio_clips_rimshot.mp3');
-rimshot.volume = 0.03;
-const sadTrombone = new Audio('../audio/assets_audio_clips_sadtrombone.mp3');
-sadTrombone.volume = 0.03;
-const shame = new Audio('../audio/assets_audio_clips_shame.mp3');
-shame.volume = 0.03;
-const wrong = new Audio('../audio/assets_audio_clips_wrong.mp3');
-wrong.volume = 0.03;
+function getCurrentURL() {
+  return window.location.href;
+}
 
 function readIt(it) {
   let voice = window.speechSynthesis.getVoices();
@@ -32,41 +12,33 @@ function readIt(it) {
   window.speechSynthesis.speak(speech);
 }
 
-async function getSongName() {
-  let songInfo = 'Henuz birsey calmiyor';
-  try {
-    const currentSong = await getData();
-    if (currentSong['status'] == 'playing') {
-      songInfo = `${currentSong['artists'][0]} - ${currentSong['title']}`;
-    }
-  } catch (error) {
-    songInfo = 'Henuz birsey calmiyor';
-  }
-  return songInfo;
-}
-
 async function chatClient() {
-  // const password = 'oauth:' + access_token;
-  // const client = new tmi.Client({
-  //   options: { debug: true },
-  //   connection: {
-  //     secure: true,
-  //     reconnect: true,
-  //   },
-  //   identity: {
-  //     username: 'ImpostorEngBot',
-  //     password: password,
-  //   },
-  //   channels: [channel],
-  // });
+  const url = getCurrentURL();
+  let access_token = '';
+  if (url.split('#').length > 1) {
+    access_token = url.split('#')[1].split('=')[1].split('&')[0];
+    console.log(access_token);
+  } else {
+    console.log('REDIRECT');
+    window.addEventListener('load', (event) => {
+      location.replace(
+        'https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=rd9v5deacyccre7grn7cgqc84rigch&redirect_uri=http://localhost:8080&scope=chat%3Aedit+chat%3Aread&state=c3ab8aa609ea11e793ae92361f002671'
+      );
+    });
+  }
 
+  const password = 'oauth:' + access_token;
   const client = new tmi.Client({
-    options: { debug: true, messagesLogLevel: 'info' },
+    options: { debug: true },
     connection: {
-      reconnect: true,
       secure: true,
+      reconnect: true,
     },
-    channels: ['impostorengineer'],
+    identity: {
+      username: 'ImpostorEngBot',
+      password: password,
+    },
+    channels: ['deradlerskartal'],
   });
 
   client.connect();
@@ -111,6 +83,9 @@ async function chatClient() {
     }
     if (command == '!test' && userLevel) {
       readIt(text);
+    }
+    if (command == '!imp' && userLevel) {
+      client.say(channel, 'go imp!');
     }
 
     // if (command == '!damage' && userLevel) {

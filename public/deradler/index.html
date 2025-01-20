@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DerAdler</title>
+    <script src="../js/tmi.min.js"></script>
+    <script src="../js/currentsong.js"></script>
+    <script src="deradler.js"></script>
+    <style>
+      * {
+        font-family: 'Exocet';
+        font-weight: 800;
+        font-size: 64px;
+        color: #fff;
+        -webkit-text-stroke-width: 3px;
+        -webkit-text-stroke-color: black;
+        margin: 0;
+        padding: 0;
+      }
+      #content {
+        width: 900px;
+        text-align: center;
+        box-sizing: border-box;
+        position: relative;
+        overflow: hidden; /*hides any part of the text */
+      }
+      #song-wrapper {
+        height: 100px;
+      }
+
+      #current-song {
+        position: absolute;
+        display: block;
+        width: 200%;
+        height: 100px;
+        margin: 0;
+        white-space: nowrap;
+        text-align: left;
+        animation: scroll-left 20s linear infinite;
+      }
+      @keyframes scroll-left {
+        0% {
+          transform: translateX(50%);
+        }
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="content">
+      <div id="song-wrapper">
+        <div id="current-song"></div>
+      </div>
+    </div>
+    <audio id="house">
+      <source src="https://en-audio.howtopronounce.com/15782164905e11ac2a1b0d7.mp3" type="audio/mpeg" />
+    </audio>
+    <script>
+      setInterval(innerHTML, 10000);
+    </script>
+  </body>
+</html>
