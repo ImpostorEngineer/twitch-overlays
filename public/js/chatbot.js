@@ -46,25 +46,16 @@ async function getSongName() {
 }
 
 async function chatClient() {
-  // const password = 'oauth:' + access_token;
-  // const client = new tmi.Client({
-  //   options: { debug: true },
-  //   connection: {
-  //     secure: true,
-  //     reconnect: true,
-  //   },
-  //   identity: {
-  //     username: 'ImpostorEngBot',
-  //     password: password,
-  //   },
-  //   channels: [channel],
-  // });
-
+  const password = 'oauth:' + access_token;
   const client = new tmi.Client({
     options: { debug: true, messagesLogLevel: 'info' },
     connection: {
-      reconnect: true,
       secure: true,
+      reconnect: true,
+    },
+    identity: {
+      username: 'ImpostorEngBot',
+      password: password,
     },
     channels: [channel],
   });
