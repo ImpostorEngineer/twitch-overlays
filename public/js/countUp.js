@@ -6,7 +6,7 @@ let counting = setInterval(function () {
     let secs = (Math.floor(startTime) % 60).toString().padStart(2, '0');
     let mins = (Math.floor(startTime / 60) % 60).toString().padStart(2, '0');
     let hours = (Math.floor(startTime / 60 / 60) % 24).toString().padStart(2, '0');
-    let days = Math.floor((startTime / 60 / 60 / 24) % 24)
+    let days = Math.floor(startTime / 60 / 60 / 24)
       .toString()
       .padStart(2, '0');
     let daysText = `${days} days ${hours}:${mins}:${secs}`;

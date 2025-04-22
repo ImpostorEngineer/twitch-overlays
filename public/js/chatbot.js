@@ -77,6 +77,7 @@ async function chatClient() {
 
     const fullMessage = message.toLowerCase().split(' ');
     const command = fullMessage[0];
+    const parameter = fullMessage[1];
     const remove = fullMessage.shift();
     const text = fullMessage.join(' ');
 
@@ -104,6 +105,13 @@ async function chatClient() {
     }
     if ((command == '!read' || command == '!oku') && userLevel) {
       readIt(text);
+    }
+    if (command == '!clip' && userLevel) {
+      if (parameter == undefined) {
+        client.say(channel, '/clip Review me!');
+      } else {
+        client.say(channel, '/clip ' + parameter);
+      }
     }
     if (command == '!test' && userLevel) {
       readIt(text);
